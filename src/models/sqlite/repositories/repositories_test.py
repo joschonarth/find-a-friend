@@ -27,3 +27,12 @@ def test_insert_person():
 
     repo = PeopleRepository(db_connection_handler)
     repo.insert_person(first_name, last_name, age, pet_id)
+
+@pytest.mark.skip(reason="interaction with the database")
+def test_get_person():
+    person_id = 1
+
+    repo = PeopleRepository(db_connection_handler)
+    response = repo.get_person(person_id)
+    print()
+    print(response)
