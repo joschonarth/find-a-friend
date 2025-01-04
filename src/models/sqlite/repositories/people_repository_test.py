@@ -40,3 +40,33 @@ def test_insert_person_error():
         repo.insert_person("João", "Otávio", 20, 2)
 
     mock_connection.session.rollback.assert_called_once()
+
+def test_get_person_success():
+    mock_connection = MockConnection()
+    repo = PeopleRepository(mock_connection)
+
+    mock_person = MagicMock()
+    mock_person.first_name = "João"
+    mock_person.last_name = "Otávio"
+    mock_person.pet_name = "max"
+    mock_person.pet_type = "dog"
+
+    mock_connection.session.query.return_value \
+        .outerjoin.return_value \
+        .filter.return_value \
+        .with_entities.return_value \
+        .one.return_value = mock_person
+
+    person = repo.get_person(1)
+
+    assert person.first_name == "João"
+    assert person.last_name == "Otávio"
+    assert person.pet_name == "max"
+    assert person.pet_type == "dog"
+
+def test_get_person_no_result():
+    mock_connection = MockConnectionNoResult()
+    repo = PeopleRepository(mock_connection)
+
+    person = repo.get_person(999)
+    assert person is None
