@@ -1,13 +1,13 @@
 # 🐶 Find A Friend
 
-Find A Friend é uma API desenvolvida em Python e Flask para facilitar o processo de adoção de PETs. O projeto implementa a Arquitetura MVC, explorando diversos conceitos fundamentais para aplicações escaláveis e bem estruturadas.
+**Find A Friend** é uma API desenvolvida em Python e Flask para facilitar o processo de adoção de PETs. O projeto implementa a Arquitetura MVC, explorando diversos conceitos fundamentais para aplicações escaláveis e bem estruturadas.
 
 ## ⚙️ Funcionalidades
 
 - 📝 Registrar uma pessoa adotando um PET.
 - 🔍 Listar todos os PETs cadastrados.
 - ❌ Deletar um PET do sistema.
-- 🔧 Retornar informações de uma pessoa e seu respectivo PET.
+- 👤 Retornar informações de uma pessoa e seu respectivo PET.
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -74,6 +74,34 @@ O projeto segue o padrão de Arquitetura MVC:
 O projeto foi implantado utilizando a plataforma Render, que oferece hospedagem simples e escalável para aplicações web. Acesse a aplicação no ambiente de produção através do link abaixo:
 
 👉 [Find A Friend - Deploy na Render](https://find-a-friend.onrender.com)
+
+## 🔗 Rotas da API
+
+### PETs
+
+- 🐾 **GET** `/pets` - Lista todos os PETs cadastrados.
+- 🗑️ **DELETE** `/pets` - Deleta um PET do sistema.
+
+### Pessoas
+
+- ✍️ **POST** `/people` - Cria o registro de uma pessoa.
+
+   **Body**:
+
+   ```json
+   {
+      "first_name": "<string>",
+      "last_name": "<string>",
+      "age": <int>,
+      "pet_id": <int>
+   }
+   ```
+
+- 👤 **GET** `/people/:person_id` - Retorna informações sobre uma pessoa e seu respectivo PET.
+
+   **Path Variable**:
+
+   `person_id` (int): ID da pessoa.
 
 ## ✅ Testes
 
